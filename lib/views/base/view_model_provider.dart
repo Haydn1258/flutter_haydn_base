@@ -4,19 +4,15 @@ import 'package:get/get.dart';
 
 final class ViewModelProvider {
   VM getViewModel<VM extends BaseViewModel>() {
+    if (Get.isRegistered<VM>()) {
+      return Get.find();
+    }
     return switch (VM) {
       HomeViewModel => _getViewModelInGetX(HomeViewModel() as VM),
       _ => throw Exception("not contains viewModel")
     };
   }
 
-  VM _getViewModelInGetX<VM extends BaseViewModel>(VM viewModelClass) {
-    if (Get.isRegistered<VM>()) {
-      print('register');
-      return Get.find();
-    } else {
-      print('create');
-      return Get.put(viewModelClass);
-    }
-  }
+  VM _getViewModelInGetX<VM extends BaseViewModel>(VM viewModelClass) =>
+      Get.put(viewModelClass);
 }
