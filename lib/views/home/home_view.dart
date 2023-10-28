@@ -7,10 +7,7 @@ class HomeView extends BaseView<HomeViewModel> {
   HomeView({super.key});
 
   @override
-  Widget get screen => test();
-
-  Widget test() {
-    print(viewModel.test);
-    return Container();
+  Widget getScreen(BuildContext context) {
+    return Scaffold();
   }
 }

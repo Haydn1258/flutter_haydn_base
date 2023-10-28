@@ -6,14 +6,13 @@ abstract class BaseView<VM extends BaseViewModel> extends StatelessWidget {
   BaseView({super.key});
 
   @protected
-  Widget get screen;
-
-  @protected
   late final VM viewModel;
+
+  Widget getScreen(BuildContext context);
 
   @override
   Widget build(BuildContext context) {
     viewModel = ViewModelProvider().getViewModel<VM>();
-    return screen;
+    return getScreen(context);
   }
 }
