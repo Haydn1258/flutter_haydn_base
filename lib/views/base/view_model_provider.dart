@@ -8,11 +8,13 @@ final class ViewModelProvider {
       return Get.find();
     }
     return switch (VM) {
-      HomeViewModel => _getViewModelInGetX(HomeViewModel()),
+      HomeViewModel => _putViewModelInGetX(HomeViewModel()),
       _ => throw Exception("not contains viewModel")
     };
   }
 
-  VM _getViewModelInGetX<VM extends BaseViewModel>(BaseViewModel viewModel) =>
+  void deleteViewModel<VM extends BaseViewModel>() => Get.delete<VM>();
+
+  VM _putViewModelInGetX<VM extends BaseViewModel>(BaseViewModel viewModel) =>
       Get.put(viewModel as VM);
 }
