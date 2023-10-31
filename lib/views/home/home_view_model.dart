@@ -6,10 +6,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class HomeViewModel extends BaseViewModel {
   final TestUseCase testUseCase = getIt.get<TestUseCase>();
 
-  final StateProvider<int> testCount = StateProvider((ref) => 0);
+  final StateProvider<int> count = StateProvider((ref) => 0);
 
   void plus(WidgetRef ref) {
-    ref.read(testCount.notifier).update((state) => state + 1);
-    print(ref.read(testCount.notifier).state);
+    ref.read(count.notifier).update((state) => state + 1);
+    print(ref.read(count.notifier).state);
   }
 }

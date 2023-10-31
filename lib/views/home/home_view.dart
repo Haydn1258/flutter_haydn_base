@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_haydn_base/views/base/base_view.dart';
 import 'package:flutter_haydn_base/views/home/home_view_model.dart';
+import 'package:flutter_haydn_base/views/next_test/next_test_view.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class HomeView extends BaseView<HomeViewModel> {
   HomeView({super.key});
-
-  final StateProvider<int> test = StateProvider((ref) => 0);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -18,6 +17,7 @@ class HomeView extends BaseView<HomeViewModel> {
             GestureDetector(
               onTap: () {
                 viewModel.plus(ref);
+                onNextScreen<NextTestView>(context);
               },
               child: Container(
                   height: 200,
@@ -39,7 +39,7 @@ class HomeView extends BaseView<HomeViewModel> {
             SizedBox(
               width: 30,
             ),
-            Text("${ref.watch(viewModel.testCount)}")
+            Text("${ref.watch(viewModel.count)}")
           ],
         ),
       ),
