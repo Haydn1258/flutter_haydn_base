@@ -18,7 +18,7 @@ void setupLocator() {
   getIt.registerSingleton<ILocalDataSource>(LocalDataSource());
 
   /// repository
-  getIt.registerSingleton<IRepository>();
+  getIt.registerSingleton<IRepository>(Repository());
 
   /// use cases
   getIt.registerSingleton(TestUseCase());
