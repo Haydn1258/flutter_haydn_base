@@ -1,1 +1,3 @@
-class Api {}
+class Api {
+  static const String a = '';
+}
