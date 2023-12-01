@@ -39,10 +39,15 @@ dependencies:
 
   data:
     path: data
+
   flutter_riverpod: ^2.4.5
+  custom_lint: ^0.5.7
+  riverpod_lint: ^2.3.7
+
   get_it: ^7.6.4
   injectable: ^2.3.2
   dart_extensions: ^2.2.3
+  shared_preferences: ^2.2.2
 
 dev_dependencies:
   flutter_test:

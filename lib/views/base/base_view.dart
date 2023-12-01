@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_haydn_base/views/base/base_view_model.dart';
 import 'package:flutter_haydn_base/view_model_provider.dart';
+import 'package:flutter_haydn_base/views/base/base_view_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../locator.dart';
@@ -16,15 +16,6 @@ abstract class BaseView<VM extends BaseViewModel>
   // ignore: library_private_types_in_public_api
   _BaseViewState<VM> createState() => _BaseViewState();
 
-  @protected
-  void onNextScreen<V extends BaseView>(BuildContext context) {
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => getIt.get<V>(),
-        ));
-  }
-
   Widget build(BuildContext context, WidgetRef ref);
 }
 
@@ -35,7 +26,7 @@ class _BaseViewState<VM extends BaseViewModel> extends ConsumerState<BaseView> {
   @override
   void initState() {
     super.initState();
-    getIt.get<ViewModelProvider>().getViewModel<VM>().init(ref);
+    getIt.get<ViewModelProvider>().getViewModel<VM>().init();
   }
 
   @override
@@ -47,5 +38,16 @@ class _BaseViewState<VM extends BaseViewModel> extends ConsumerState<BaseView> {
   void dispose() {
     getIt.get<ViewModelProvider>().deleteViewModel<VM>();
     super.dispose();
+  }
+}
+
+extension NextScreenExt on BaseView {
+  void onNextScreen<V extends BaseView>(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => getIt.get<V>(),
+      ),
+    );
   }
 }

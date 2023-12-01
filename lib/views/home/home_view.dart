@@ -16,7 +16,8 @@ class HomeView extends BaseView<HomeViewModel> {
           children: [
             GestureDetector(
               onTap: () {
-                viewModel.plus(ref);
+                //final count = ref.watch(counterProvider.notifier);
+                //count.state = (count.state + 1);
                 onNextScreen<NextTestView>(context);
               },
               child: Container(
@@ -39,7 +40,6 @@ class HomeView extends BaseView<HomeViewModel> {
             SizedBox(
               width: 30,
             ),
-            Text("${ref.watch(viewModel.count)}")
           ],
         ),
       ),
