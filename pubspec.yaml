@@ -34,6 +34,9 @@ dependencies:
   domain:
     path: domain
 
+  entity:
+    path: entity
+
   data:
     path: data
   flutter_riverpod: ^2.4.5
@@ -94,8 +97,8 @@ flutter:
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
 
-  fonts:
-    - family: noto_sans
+  #  fonts:
+  #    - family: noto_sans
 
   assets:
     - assets/icons/

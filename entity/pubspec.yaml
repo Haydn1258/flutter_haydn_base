@@ -1,4 +1,4 @@
-name: domain
+name: entity
 description: A starting point for Dart libraries or applications.
 version: 1.0.0
 publish_to: 'none'
@@ -9,9 +9,7 @@ environment:
 
 # Add regular dependencies here.
 dependencies:
-  # path: ^1.8.0
-  entity:
-    path: ../entity
+# path: ^1.8.0
 
 dev_dependencies:
   lints: ^2.1.0
