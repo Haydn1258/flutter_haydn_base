@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_haydn_base/views/base/base_view.dart';
-import 'package:flutter_haydn_base/views/home/home_view_model.dart';
 import 'package:flutter_haydn_base/views/next_test/next_test_view.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class HomeView extends BaseView<HomeViewModel> {
+import '../../providers/test_provider.dart';
+
+class HomeView extends ConsumerWidget {
   HomeView({super.key});
 
   @override
@@ -16,9 +16,9 @@ class HomeView extends BaseView<HomeViewModel> {
           children: [
             GestureDetector(
               onTap: () {
-                //final count = ref.watch(counterProvider.notifier);
-                //count.state = (count.state + 1);
-                onNextScreen<NextTestView>(context);
+                final count = ref.watch(counterProvider.notifier);
+                count.state = (count.state + 1);
+                onNextScreen(context, NextTestView());
               },
               child: Container(
                   height: 200,
@@ -42,6 +42,17 @@ class HomeView extends BaseView<HomeViewModel> {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+extension NextScreenExt on ConsumerWidget {
+  void onNextScreen(BuildContext context, ConsumerWidget screen) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => screen,
       ),
     );
   }

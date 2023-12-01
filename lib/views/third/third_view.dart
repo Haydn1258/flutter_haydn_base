@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_haydn_base/views/home/home_view.dart';
-import 'package:flutter_haydn_base/views/third/third_view.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod/src/consumer.dart';
 
-class NextTestView extends ConsumerWidget {
-  NextTestView({super.key});
+import '../../providers/test_provider.dart';
+
+class ThirdView extends ConsumerWidget {
+  const ThirdView({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -12,10 +12,11 @@ class NextTestView extends ConsumerWidget {
       child: Scaffold(
         body: GestureDetector(
           onTap: () {
-            onNextScreen(context, ThirdView());
+            final count = ref.watch(counterProvider.notifier);
+            count.state = (count.state + 1);
           },
           child: Text(
-            "sadfaaaa",
+            "${ref.watch(counterProvider)} aaaa",
             style: TextStyle(fontSize: 50),
           ),
         ),
