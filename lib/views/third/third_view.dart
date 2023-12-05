@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/src/consumer.dart';
+import 'package:flutter_haydn_base/providers/product_provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../providers/test_provider.dart';
 
@@ -8,6 +9,18 @@ class ThirdView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final products = ref.watch(productProvider);
+    products.when(
+      data: (data) {
+        print('data : ${data}');
+      },
+      error: (e, stackTrace) {
+        print('e : $e');
+      },
+      loading: () {
+        print('loading');
+      },
+    );
     return SafeArea(
       child: Scaffold(
         body: GestureDetector(
