@@ -1,14 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_haydn_base/views/base/base_view.dart';
-import 'package:flutter_haydn_base/views/home/home_view_model.dart';
-import 'package:flutter_haydn_base/views/next_test/next_test_view.dart';
+import 'package:flutter_haydn_base/views/second/second_view.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class HomeView extends BaseView<HomeViewModel> {
+import '../../providers/product_provider.dart';
+import '../../providers/test_provider.dart';
+
+class HomeView extends ConsumerWidget {
   HomeView({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final products = ref.watch(productProvider);
+    products.when(
+      data: (data) {
+        print('data : ${data}');
+      },
+      error: (e, stackTrace) {
+        print('e : $e');
+      },
+      loading: () {
+        print('loading');
+      },
+    );
     return Scaffold(
       body: Container(
         child: Row(
@@ -16,8 +29,9 @@ class HomeView extends BaseView<HomeViewModel> {
           children: [
             GestureDetector(
               onTap: () {
-                viewModel.plus(ref);
-                onNextScreen<NextTestView>(context);
+                final count = ref.watch(counterProvider.notifier);
+                count.state = (count.state + 1);
+                onNextScreen(context, SecondView());
               },
               child: Container(
                   height: 200,
@@ -39,9 +53,19 @@ class HomeView extends BaseView<HomeViewModel> {
             SizedBox(
               width: 30,
             ),
-            Text("${ref.watch(viewModel.count)}")
           ],
         ),
+      ),
+    );
+  }
+}
+
+extension NextScreenExt on ConsumerWidget {
+  void onNextScreen(BuildContext context, ConsumerWidget screen) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => screen,
       ),
     );
   }
