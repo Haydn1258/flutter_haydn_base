@@ -11,3 +11,4 @@ class GetProductsUseCase extends UseCase<GetProductsReq, List<GetProductsRes>> {
   Future<List<GetProductsRes>> api(GetProductsReq vo) =>
       _repository.getProducts(vo);
 }
+//test
