@@ -34,12 +34,18 @@ dependencies:
   domain:
     path: domain
 
+  entity:
+    path: entity
+
   data:
     path: data
+
   flutter_riverpod: ^2.4.5
+
   get_it: ^7.6.4
   injectable: ^2.3.2
   dart_extensions: ^2.2.3
+  shared_preferences: ^2.2.2
 
 dev_dependencies:
   flutter_test:
@@ -50,7 +56,7 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^2.0.0
+  flutter_lints: ^3.0.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -94,8 +100,8 @@ flutter:
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
 
-  fonts:
-    - family: noto_sans
+  #  fonts:
+  #    - family: noto_sans
 
   assets:
     - assets/icons/
